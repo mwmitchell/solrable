@@ -1,0 +1,22 @@
+=Solrable
+A Rails plugin for easily hooking up action methods to Solr requests. An experimental, work in progress.
+
+==Example
+  class Documents < ApplicationController
+  
+    include Solrable::Controller
+  
+    # call the #search method on SolrDocument when the #index action is executed
+    # this also creates the #index action as well as some other helpers.
+    # controller.solr_index_params is automatically created and exposed as a view helper.
+    solrize :index, :search do
+      {
+        :q => params[:q],
+        :rows => params[:rows]
+      }
+    end
+    
+  end
+
+===Notes
+Yeah, this isn't done yet. Dependes on RSolr::Ext.
